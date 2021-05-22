@@ -1,4 +1,4 @@
-package com.example.moviedb.domain.repository
+package com.example.moviedb.domain.usecases
 
 import com.example.moviedb.data.api.AuthApi
 import com.example.moviedb.data.entity.auth.RequestToken
@@ -12,5 +12,9 @@ class AuthUseCase(private val authApi: AuthApi) {
     }
 
     fun createRequestToken(): Flow<RequestToken> = authApi.createRequestToken(BASE_API_KEY)
-    fun createSession(apiKey: String): Flow<Session> = authApi.createSession(apiKey)
+    fun createSession(
+        login: String,
+        password: String,
+        requestToken: String
+    ): Flow<Session> = authApi.createSession(BASE_API_KEY, login, password, requestToken)
 }

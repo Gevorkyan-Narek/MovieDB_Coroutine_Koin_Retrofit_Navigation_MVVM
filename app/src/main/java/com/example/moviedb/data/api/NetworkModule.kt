@@ -1,7 +1,5 @@
-package com.example.moviedb.data
+package com.example.moviedb.data.api
 
-import com.example.moviedb.data.api.AuthApi
-import com.example.moviedb.data.api.MovieApi
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient

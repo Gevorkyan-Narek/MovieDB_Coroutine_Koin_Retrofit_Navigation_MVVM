@@ -1,4 +1,4 @@
-package com.example.moviedb.domain.repository
+package com.example.moviedb.domain.usecases
 
 import com.example.moviedb.data.api.MovieApi
 import com.example.moviedb.data.entity.movie.MovieResponse
