@@ -42,8 +42,18 @@ class AuthFragment : Fragment() {
     private fun observeViewModel() {
         authViewModel.run {
             loginLiveData.observe(viewLifecycleOwner, {
+                binding.error.text = ""
                 findNavController().navigate(R.id.action_authFragment_to_movieFragment2)
             })
+            errorLiveData.observe(viewLifecycleOwner, {
+                errorButton(it)
+            })
         }
+    }
+
+    private fun errorButton(error: String?) {
+        binding.enter.setBackgroundColor(resources.getColor(R.color.orange, context?.theme))
+        binding.enter.setTextColor(resources.getColor(R.color.white, context?.theme))
+        binding.error.text = error
     }
 }

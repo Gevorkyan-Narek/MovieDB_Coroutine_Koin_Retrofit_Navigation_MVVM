@@ -12,4 +12,6 @@
     <color name="bg_black">#191A25</color>
     <color name="inputBorder">#2A2E42</color>
     <color name="gray">#656D8A</color>
+    <color name="orange">#FE4E27</color>
+    <color name="disableButtonColor">#232636</color>
 </resources>

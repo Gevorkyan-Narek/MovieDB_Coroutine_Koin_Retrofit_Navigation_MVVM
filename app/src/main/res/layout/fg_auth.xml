@@ -36,6 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:hint="@string/login"
+        app:boxStrokeColor="@color/gray"
         android:textColorHint="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,9 +67,20 @@
             android:id="@+id/passwordInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberPassword"
+            android:inputType="textPassword"
             android:textColor="@color/gray" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/error"
+        style="@style/Body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/password" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/enter"
@@ -76,6 +88,8 @@
         android:layout_height="56dp"
         android:text="@string/enter"
         android:textAllCaps="false"
+        android:textColor="@color/gray"
+        app:backgroundTint="@color/disableButtonColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

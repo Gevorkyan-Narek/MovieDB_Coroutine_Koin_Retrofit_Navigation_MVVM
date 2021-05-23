@@ -14,9 +14,9 @@ class NetworkModule {
         private val moshi by lazy { Moshi.Builder().add(KotlinJsonAdapterFactory()).build() }
 
         private val loggingInterceptor by lazy {
-            val httpLoggingInterceptor = HttpLoggingInterceptor()
-            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-            httpLoggingInterceptor
+            HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BASIC
+            }
         }
 
         private val httpClient by lazy {
