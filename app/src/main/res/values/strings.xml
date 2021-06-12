@@ -5,4 +5,14 @@
     <string name="login">Логин</string>
     <string name="password">Пароль</string>
     <string name="enter">Войти</string>
+    <string name="movies">Фильмы</string>
+    <string name="favourite">Избранное</string>
+    <string name="profile">Профиль</string>
+    <string name="we_will_find_any_movie_on_your_taste">Найдем любой фильм на ваш вкус</string>
+    <string name="no_one_favourite_film">Вы не добавили ни одного фильма</string>
+    <string name="find_lovely_films">Найти любимые фильмы</string>
+    <string name="exit">Выйти</string>
+    <string name="search_films">Поиск фильмов</string>
+    <string name="top_films">Топ фильмов</string>
+    <string name="upComing">Скоро выйдут</string>
 </resources>

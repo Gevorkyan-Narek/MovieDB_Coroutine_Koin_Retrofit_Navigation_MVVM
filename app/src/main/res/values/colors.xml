@@ -10,8 +10,10 @@
 
     <color name="light">#E7EDFF</color>
     <color name="bg_black">#191A25</color>
-    <color name="inputBorder">#2A2E42</color>
+    <color name="input_border">#2A2E42</color>
     <color name="gray">#656D8A</color>
     <color name="orange">#FE4E27</color>
-    <color name="disableButtonColor">#232636</color>
+    <color name="disable_button_color">#232636</color>
+    <color name="light_gray">#282C3F</color>
+    <color name="purpure">#6C63FF</color>
 </resources>

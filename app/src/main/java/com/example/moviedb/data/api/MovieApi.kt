@@ -1,35 +1,34 @@
 package com.example.moviedb.data.api
 
 import com.example.moviedb.data.entity.movie.MovieResponse
-import kotlinx.coroutines.flow.Flow
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface MovieApi {
 
-    @GET("/movie/popular")
-    fun getPopular(
+    @GET("movie/popular")
+    suspend fun getPopular(
         @Query("api_key") apiKey: String,
         @Query("language") language: String = "ru-RU"
-    ): Flow<MovieResponse>
+    ): MovieResponse
 
-    @GET("/movie/top_rated")
-    fun getTopRated(
+    @GET("movie/top_rated")
+    suspend fun getTopRated(
         @Query("api_key") apiKey: String,
         @Query("language") language: String = "ru-RU"
-    ): Flow<MovieResponse>
+    ): MovieResponse
 
-    @GET("/movie/upcoming")
-    fun getUpComing(
+    @GET("movie/upcoming")
+    suspend fun getUpComing(
         @Query("api_key") apiKey: String,
         @Query("language") language: String = "ru-RU"
-    ): Flow<MovieResponse>
+    ): MovieResponse
 
-    @GET("/movie/{movie_id}")
-    fun getDetails(
+    @GET("movie/{movie_id}")
+    suspend fun getDetails(
         @Path("movie_id") movieId: Int,
         @Query("api_key") apiKey: String,
         @Query("language") language: String = "ru-RU"
-    ): Flow<MovieResponse>
+    ): MovieResponse
 }

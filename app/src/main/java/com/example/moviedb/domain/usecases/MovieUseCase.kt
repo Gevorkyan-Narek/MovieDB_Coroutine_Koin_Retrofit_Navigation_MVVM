@@ -1,21 +1,37 @@
 package com.example.moviedb.domain.usecases
 
 import com.example.moviedb.data.api.MovieApi
+import com.example.moviedb.data.api.Resource
+import com.example.moviedb.data.api.ResponseHandler
 import com.example.moviedb.data.entity.movie.MovieResponse
-import kotlinx.coroutines.flow.Flow
 
-class MovieUseCase(private val movieApi: MovieApi) {
+class MovieUseCase(
+    private val movieApi: MovieApi,
+    private val responseHandler: ResponseHandler
+) : BaseUseCase() {
 
-    fun getPopular(apiKey: String): Flow<MovieResponse> =
-        movieApi.getPopular(apiKey)
+    suspend fun getPopular(): Resource<MovieResponse> = try {
+        responseHandler.handlerSuccess(movieApi.getPopular(BASE_API_KEY))
+    } catch (e: Exception) {
+        responseHandler.handlerException(e)
+    }
 
-    fun getTopRated(apiKey: String): Flow<MovieResponse> =
-        movieApi.getTopRated(apiKey)
+    suspend fun getTopRated(): Resource<MovieResponse> = try {
+        responseHandler.handlerSuccess(movieApi.getTopRated(BASE_API_KEY))
+    } catch (e: Exception) {
+        responseHandler.handlerException(e)
+    }
 
-    fun getUpComing(apiKey: String): Flow<MovieResponse> =
-        movieApi.getUpComing(apiKey)
+    suspend fun getUpComing(): Resource<MovieResponse> = try {
+        responseHandler.handlerSuccess(movieApi.getUpComing(BASE_API_KEY))
+    } catch (e: Exception) {
+        responseHandler.handlerException(e)
+    }
 
-    fun getDetails(movieId: Int, apiKey: String): Flow<MovieResponse> =
-        movieApi.getDetails(movieId, apiKey)
+    suspend fun getDetails(movieId: Int): Resource<MovieResponse> = try {
+        responseHandler.handlerSuccess(movieApi.getDetails(movieId, BASE_API_KEY))
+    } catch (e: Exception) {
+        responseHandler.handlerException(e)
+    }
 
 }

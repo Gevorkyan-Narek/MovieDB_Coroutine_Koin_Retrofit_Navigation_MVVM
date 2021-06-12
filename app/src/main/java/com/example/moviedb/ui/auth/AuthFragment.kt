@@ -1,37 +1,22 @@
 package com.example.moviedb.ui.auth
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.moviedb.R
-import com.example.moviedb.databinding.FgAuthBinding
+import com.example.moviedb.data.clearText
+import com.example.moviedb.data.observe
+import com.example.moviedb.databinding.FAuthBinding
+import com.example.moviedb.ui.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class AuthFragment : Fragment() {
+class AuthFragment : BaseFragment() {
 
-    private val authViewModel: AuthViewModel by viewModel()
-    private val binding by lazy { FgAuthBinding.inflate(layoutInflater) }
+    override val viewModel: AuthViewModel by viewModel()
+    override val binding by lazy { FAuthBinding.inflate(layoutInflater) }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        observeViewModel()
-        prepare()
-    }
-
-    private fun prepare() {
+    override fun prepare() {
         with(binding) {
             enter.setOnClickListener {
-                authViewModel.onLoginClicked(
+                viewModel.onLoginClicked(
                     loginInput.text.toString(),
                     passwordInput.text.toString()
                 )
@@ -39,21 +24,24 @@ class AuthFragment : Fragment() {
         }
     }
 
-    private fun observeViewModel() {
-        authViewModel.run {
-            loginLiveData.observe(viewLifecycleOwner, {
-                binding.error.text = ""
-                findNavController().navigate(R.id.action_authFragment_to_movieFragment2)
-            })
-            errorLiveData.observe(viewLifecycleOwner, {
-                errorButton(it)
-            })
+    override fun observeViewModel() {
+        viewModel.run {
+            with(binding) {
+                observe(loginLiveData) {
+                    error.clearText()
+                    findNavController().navigate(R.id.action_authFragment_to_movieFragment2)
+                }
+                observe(errorLiveData) {
+                    enter.setBackgroundColor(
+                        resources.getColor(
+                            R.color.orange,
+                            context?.theme
+                        )
+                    )
+                    enter.setTextColor(resources.getColor(R.color.white, context?.theme))
+                    error.text = it
+                }
+            }
         }
-    }
-
-    private fun errorButton(error: String?) {
-        binding.enter.setBackgroundColor(resources.getColor(R.color.orange, context?.theme))
-        binding.enter.setTextColor(resources.getColor(R.color.white, context?.theme))
-        binding.error.text = error
     }
 }

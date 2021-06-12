@@ -9,14 +9,45 @@
         android:id="@+id/authFragment"
         android:name="com.example.moviedb.ui.auth.AuthFragment"
         android:label="AuthFragment"
-        tools:layout="@layout/fg_auth">
+        tools:layout="@layout/f_auth">
         <action
             android:id="@+id/action_authFragment_to_movieFragment2"
-            app:destination="@id/movieFragment2" />
+            app:destination="@id/movieFragment" />
     </fragment>
     <fragment
-        android:id="@+id/movieFragment2"
-        android:name="com.example.moviedb.ui.movie.MovieFragment"
+        android:id="@+id/movieFragment"
+        android:name="com.example.moviedb.ui.movie.MovieContainerFragment"
         android:label="MovieFragment"
-        tools:layout="@layout/fg_movies" />
+        tools:layout="@layout/f_movie_container">
+        <action
+            android:id="@+id/action_movieFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_movieFragment_to_favouriteFragment"
+            app:destination="@id/favouriteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favouriteFragment"
+        android:name="com.example.moviedb.ui.favourite.FavouriteFragment"
+        android:label="FavouriteFragment"
+        tools:layout="@layout/f_favourite">
+        <action
+            android:id="@+id/action_favouriteFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_favouriteFragment_to_movieFragment"
+            app:destination="@id/movieFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.moviedb.ui.profle.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/f_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_movieFragment"
+            app:destination="@id/movieFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_favouriteFragment"
+            app:destination="@id/favouriteFragment" />
+    </fragment>
 </navigation>

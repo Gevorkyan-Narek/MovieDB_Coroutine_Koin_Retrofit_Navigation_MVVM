@@ -18,7 +18,7 @@ class AuthViewModel(private val authUseCase: AuthUseCase) : ViewModel() {
     private val _loginLiveData = MutableLiveData<Unit>()
     val loginLiveData = _loginLiveData
 
-    private val _errorLiveData = MutableLiveData<String?>()
+    private val _errorLiveData = MutableLiveData<String>()
     val errorLiveData = _errorLiveData
 
     fun onLoginClicked(login: String, password: String) {
@@ -35,21 +35,24 @@ class AuthViewModel(private val authUseCase: AuthUseCase) : ViewModel() {
 
     private fun createRequest(login: String, password: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            val response = authUseCase.createRequestToken()
-            if (response.status == ResponseStatuses.SUCCESS && response.data != null) {
-                this@AuthViewModel.requestToken = response.data
-                createSession(login, password, response.data)
-            } else _errorLiveData.postValue(response.msg)
+            authUseCase.createRequestToken().apply {
+                if (status == ResponseStatuses.SUCCESS && data != null) {
+                    this@AuthViewModel.requestToken = data
+                    createSession(login, password, data)
+                } else _errorLiveData.postValue(msg)
+            }
         }
     }
 
     private fun createSession(login: String, password: String, requestToken: AuthResponse) {
         viewModelScope.launch(Dispatchers.IO) {
-            val response = authUseCase.createSession(login, password, requestToken.requestToken)
-            if (response.status == ResponseStatuses.SUCCESS)
-                _loginLiveData.postValue(Unit)
-            else
-                _errorLiveData.postValue(response.msg)
+            authUseCase.createSession(login, password, requestToken.requestToken).apply {
+                if (status == ResponseStatuses.SUCCESS)
+                    _loginLiveData.postValue(Unit)
+                else
+                    _errorLiveData.postValue(msg)
+
+            }
         }
     }
 }

@@ -8,11 +8,7 @@ import com.example.moviedb.data.entity.auth.AuthResponse
 class AuthUseCase(
     private val authApi: AuthApi,
     private val responseHandler: ResponseHandler
-) {
-
-    companion object {
-        private const val BASE_API_KEY = "7a00b045a944e9396f766b8e2b906775"
-    }
+) : BaseUseCase() {
 
     suspend fun createRequestToken(): Resource<AuthResponse> = try {
         responseHandler.handlerSuccess(authApi.createRequestToken(BASE_API_KEY))
@@ -25,7 +21,14 @@ class AuthUseCase(
         password: String,
         requestToken: String
     ): Resource<AuthResponse> = try {
-        responseHandler.handlerSuccess(authApi.createSession(BASE_API_KEY, login, password, requestToken))
+        responseHandler.handlerSuccess(
+            authApi.createSession(
+                BASE_API_KEY,
+                login,
+                password,
+                requestToken
+            )
+        )
     } catch (e: Exception) {
         responseHandler.handlerException(e)
     }
