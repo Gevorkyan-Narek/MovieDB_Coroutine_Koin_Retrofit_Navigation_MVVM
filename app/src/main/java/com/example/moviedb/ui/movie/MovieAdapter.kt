@@ -4,7 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
+import com.example.moviedb.data.api.setImage
 import com.example.moviedb.data.entity.movie.Movie
 import com.example.moviedb.databinding.ItemFilmBinding
 
@@ -24,13 +24,12 @@ class MovieAdapter(
         )
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        val url = "https://image.tmdb.org/t/p/w500${movieList[position].posterPath}"
-        holder.poster.load(url)
+        holder.poster.setImage(movieList[position].poster)
         holder.rate.text = movieList[position].voteAverage.toString()
         holder.itemView.setOnClickListener { onClick(movieList[position].id) }
         Log.i(
             this::class.simpleName,
-            "Position: $position, posterUrl: $url, rate: ${holder.rate.text}"
+            "Position: $position, posterUrl: ${movieList[position].poster}, rate: ${holder.rate.text}"
         )
     }
 

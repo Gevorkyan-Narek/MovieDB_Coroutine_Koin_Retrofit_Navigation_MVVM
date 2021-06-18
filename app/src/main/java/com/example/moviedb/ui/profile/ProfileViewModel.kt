@@ -1,4 +1,4 @@
-package com.example.moviedb.ui.profle
+package com.example.moviedb.ui.profile
 
 import androidx.lifecycle.ViewModel
 

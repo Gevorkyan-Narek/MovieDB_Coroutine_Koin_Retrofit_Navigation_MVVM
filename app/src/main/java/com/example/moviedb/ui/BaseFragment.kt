@@ -27,4 +27,6 @@ abstract class BaseFragment : Fragment() {
         observeViewModel()
         prepare()
     }
+
+
 }

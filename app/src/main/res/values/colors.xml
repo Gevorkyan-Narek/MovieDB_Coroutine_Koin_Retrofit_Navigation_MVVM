@@ -16,4 +16,5 @@
     <color name="disable_button_color">#232636</color>
     <color name="light_gray">#282C3F</color>
     <color name="purpure">#6C63FF</color>
+    <color name="somethingBetweenOrangeAndYellow">#FCAC35</color>
 </resources>

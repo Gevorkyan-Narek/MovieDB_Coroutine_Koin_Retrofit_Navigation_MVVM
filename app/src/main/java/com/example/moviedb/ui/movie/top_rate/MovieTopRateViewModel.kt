@@ -5,10 +5,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.moviedb.data.api.ResponseStatuses
 import com.example.moviedb.data.entity.movie.Movie
-import com.example.moviedb.domain.usecases.MovieUseCase
+import com.example.moviedb.domain.usecases.MovieRepository
 import kotlinx.coroutines.launch
 
-class MovieTopRateViewModel(private val movieUseCase: MovieUseCase) : ViewModel() {
+class MovieTopRateViewModel(private val movieRepository: MovieRepository) : ViewModel() {
 
     private val _movieTopRateList = MutableLiveData<List<Movie>>()
     val movieTopRateList = _movieTopRateList
@@ -22,16 +22,19 @@ class MovieTopRateViewModel(private val movieUseCase: MovieUseCase) : ViewModel(
     private val _errorUpComing = MutableLiveData<String>()
     val errorUpComing = MutableLiveData<String>()
 
+    private val _onMovieClick = MutableLiveData<Long>()
+    val onMovieClick = _onMovieClick
+
     init {
         viewModelScope.launch {
-            movieUseCase.getTopRated().apply {
+            movieRepository.getTopRated().apply {
                 if (status == ResponseStatuses.SUCCESS && data != null) {
                     _movieTopRateList.value = data.movieList
                 } else {
                     _errorTopRate.value = msg
                 }
             }
-            movieUseCase.getUpComing().apply {
+            movieRepository.getUpComing().apply {
                 if (status == ResponseStatuses.SUCCESS && data != null) {
                     _movieUpComingList.value = data.movieList
                 } else {
@@ -43,6 +46,6 @@ class MovieTopRateViewModel(private val movieUseCase: MovieUseCase) : ViewModel(
     }
 
     fun onClickMovie(id: Long) {
-
+        _onMovieClick.value = id
     }
 }

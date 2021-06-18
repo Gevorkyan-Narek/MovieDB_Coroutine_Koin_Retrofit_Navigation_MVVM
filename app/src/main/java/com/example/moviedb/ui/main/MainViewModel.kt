@@ -10,8 +10,6 @@ class MainViewModel : ViewModel() {
     val destinationChanged = _destinationChanged
 
     fun onDestinationChanged(destination: NavDestination) {
-        if (destination.id != R.id.authFragment)
-            _destinationChanged.postValue(true)
+        _destinationChanged.postValue(destination.id != R.id.authFragment && destination.id != R.id.movieDetailFragment)
     }
-
 }

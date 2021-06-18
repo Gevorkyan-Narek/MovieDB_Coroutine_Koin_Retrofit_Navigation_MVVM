@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.moviedb.ui.profle.ProfileFragment"
+        android:name="com.example.moviedb.ui.profile.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/f_profile">
         <action
@@ -49,5 +49,11 @@
         <action
             android:id="@+id/action_profileFragment_to_favouriteFragment"
             app:destination="@id/favouriteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.example.moviedb.ui.movie.detail.MovieDetailFragment"
+        android:label="MovieFragment"
+        tools:layout="@layout/f_movie_detail">
     </fragment>
 </navigation>

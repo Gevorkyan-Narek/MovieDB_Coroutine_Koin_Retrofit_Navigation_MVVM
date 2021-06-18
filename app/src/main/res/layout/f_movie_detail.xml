@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_black">
+
+    <ImageView
+        android:id="@+id/poster"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="center"
+        app:layout_constraintBottom_toBottomOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription"
+        tools:src="@drawable/backdrop_example" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="130dp"
+        android:src="@drawable/transition_to_bg_black"
+        app:layout_constraintBottom_toBottomOf="@id/poster"
+        app:layout_constraintEnd_toEndOf="@id/poster"
+        app:layout_constraintStart_toStartOf="@id/poster" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/baseHorizontalMargin"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@color/somethingBetweenOrangeAndYellow"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="@id/poster"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Netflix" />
+
+    <TextView
+        android:id="@+id/voteAverage"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="@dimen/baseHorizontalMargin"
+        android:drawablePadding="7dp"
+        android:textColor="@color/somethingBetweenOrangeAndYellow"
+        android:textSize="20sp"
+        app:drawableStartCompat="@drawable/favorite"
+        app:drawableTint="@color/somethingBetweenOrangeAndYellow"
+        app:layout_constraintBottom_toBottomOf="@id/genres"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/genres"
+        tools:text="7.9" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/genres"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/baseHorizontalMargin"
+        android:layout_marginEnd="@dimen/baseHorizontalMargin"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toStartOf="@id/voteAverage"
+        app:layout_constraintStart_toStartOf="@id/title"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        tools:listitem="@layout/item_genre" />
+
+    <TextView
+        android:id="@+id/description"
+        style="@style/Body"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/baseHorizontalMargin"
+        app:layout_constraintEnd_toEndOf="@id/voteAverage"
+        app:layout_constraintStart_toStartOf="@id/genres"
+        app:layout_constraintTop_toBottomOf="@id/genres"
+        tools:text="Some description" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

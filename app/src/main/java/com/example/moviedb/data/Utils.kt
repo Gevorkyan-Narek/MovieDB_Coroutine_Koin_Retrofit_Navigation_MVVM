@@ -21,7 +21,7 @@ fun TextView.clearText() {
     text = ""
 }
 
-fun RecyclerView.setItemDecorationMargin(margin: Int) {
+fun RecyclerView.setItemDecorationMarginRight(margin: Int) {
     addItemDecoration(object : RecyclerView.ItemDecoration() {
         override fun getItemOffsets(
             outRect: Rect,

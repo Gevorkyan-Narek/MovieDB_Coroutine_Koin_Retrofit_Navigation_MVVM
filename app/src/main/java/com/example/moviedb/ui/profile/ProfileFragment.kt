@@ -1,4 +1,4 @@
-package com.example.moviedb.ui.profle
+package com.example.moviedb.ui.profile
 
 import androidx.fragment.app.viewModels
 import com.example.moviedb.databinding.FProfileBinding
